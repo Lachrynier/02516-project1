@@ -5,11 +5,16 @@ import glob
 from torch.utils.data import DataLoader
 import torchvision.transforms as transforms
 
+IMAGE_SIZE = 128
+BATCH_SIZE = 64
+NUM_WORKERS = 3
+DATA_PATH = './data/hotdog_nothotdog'
+
 class Hotdog_NotHotdog(torch.utils.data.Dataset):
-    def __init__(self, train, transform, data_path='./data/hotdog_nothotdog'):
+    def __init__(self, train, transform):
         'Initialization'
         self.transform = transform
-        data_path = os.path.join(data_path, 'train' if train else 'test')
+        data_path = os.path.join(DATA_PATH, 'train' if train else 'test')
         image_classes = [os.path.split(d)[1] for d in glob.glob(data_path +'/*') if os.path.isdir(d)]
         image_classes.sort()
         self.name_to_label = {c: id for id, c in enumerate(image_classes)}
@@ -29,17 +34,16 @@ class Hotdog_NotHotdog(torch.utils.data.Dataset):
         X = self.transform(image)
         return X, y
 
-def make_datasets_and_dataloaders():
-    size = 128
-    train_transform = transforms.Compose([transforms.Resize((size, size)), 
-                                        transforms.ToTensor()])
-    test_transform = transforms.Compose([transforms.Resize((size, size)), 
-                                        transforms.ToTensor()])
+def make_datasets_and_dataloaders(transform=None):
+    if not transform:
+        transform = transforms.Compose([
+            transforms.Resize((IMAGE_SIZE, IMAGE_SIZE)),
+            transforms.ToTensor(),
+        ])
 
-    batch_size = 64
-    trainset = Hotdog_NotHotdog(train=True, transform=train_transform)
-    train_loader = DataLoader(trainset, batch_size=batch_size, shuffle=True, num_workers=3)
-    testset = Hotdog_NotHotdog(train=False, transform=test_transform)
-    test_loader = DataLoader(testset, batch_size=batch_size, shuffle=False, num_workers=3)
+    trainset = Hotdog_NotHotdog(train=True, transform=transform)
+    train_loader = DataLoader(trainset, batch_size=BATCH_SIZE, shuffle=True, num_workers=NUM_WORKERS)
+    testset = Hotdog_NotHotdog(train=False, transform=transform)
+    test_loader = DataLoader(testset, batch_size=BATCH_SIZE, shuffle=False, num_workers=NUM_WORKERS)
 
     return trainset, testset, train_loader, test_loader

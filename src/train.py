@@ -83,8 +83,8 @@ def plot_history(history, title=None, filename=None):
     plt.pause(0.001)
 
 
-def train(model, optimizer, num_epochs, plot=False, save=False, restart=False):
-    trainset, testset, train_loader, test_loader = data.make_datasets_and_dataloaders()
+def train(model, optimizer, num_epochs, plot=False, save=False, restart=False, transform=None):
+    trainset, testset, train_loader, test_loader = data.make_datasets_and_dataloaders(transform=transform)
     model.to(DEVICE)
 
     model_name = model.__class__.__name__

@@ -2,6 +2,7 @@ import torch
 import os
 import glob
 
+from src.logger import logger
 from src.utils import DEVICE
 
 def get_model_dir(model):
@@ -25,7 +26,7 @@ def load_checkpoint(model, optimizer):
         optimizer.load_state_dict(checkpoint["optimizer_state"])
         history = checkpoint["history"]
         start_epoch = checkpoint["epoch"]
-        print(f"Resuming from {latest_path}")
+        logger.info(f"Resuming from {latest_path}")
         return start_epoch, history
     else:
         return 0, {'train_acc': [], 'test_acc': [],
@@ -48,4 +49,4 @@ def clear_checkpoints(model):
     if os.path.exists(model_dir):
         for f in glob.glob(os.path.join(model_dir, "*.pth")):
             os.remove(f)
-        print(f"Cleared all checkpoints in {model_dir}")
+        logger.info(f"Cleared all checkpoints in {model_dir}")

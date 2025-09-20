@@ -22,3 +22,7 @@
 2025-09-20 02:02:24 | INFO | Epoch 30/32 | Loss train: 0.017 test: 0.865 | Acc train: 100.0% test: 76.1%
 2025-09-20 02:02:30 | INFO | Epoch 31/32 | Loss train: 0.016 test: 0.848 | Acc train: 99.9% test: 75.7%
 2025-09-20 02:02:36 | INFO | Epoch 32/32 | Loss train: 0.018 test: 0.884 | Acc train: 99.9% test: 76.2%
+2025-09-20 18:24:51 | INFO | Epoch 33/36 | Loss train: 0.015 test: 0.940 | Acc train: 100.0% test: 74.7%
+2025-09-20 18:24:53 | INFO | Epoch 34/36 | Loss train: 0.014 test: 0.891 | Acc train: 100.0% test: 76.3%
+2025-09-20 18:24:54 | INFO | Epoch 35/36 | Loss train: 0.013 test: 0.944 | Acc train: 100.0% test: 75.5%
+2025-09-20 18:24:56 | INFO | Epoch 36/36 | Loss train: 0.011 test: 0.919 | Acc train: 100.0% test: 75.6%

@@ -1,0 +1,43 @@
+2025-09-20 21:21:19 | INFO | Epoch 1/10 | Loss train: 0.645 test: 0.630 | Acc train: 64.9% test: 68.2%
+2025-09-20 21:21:23 | INFO | Epoch 2/10 | Loss train: 0.600 test: 0.591 | Acc train: 72.0% test: 75.0%
+2025-09-20 21:21:26 | INFO | Epoch 3/10 | Loss train: 0.560 test: 0.558 | Acc train: 78.7% test: 80.4%
+2025-09-20 21:21:29 | INFO | Epoch 4/10 | Loss train: 0.533 test: 0.529 | Acc train: 82.2% test: 82.9%
+2025-09-20 21:21:33 | INFO | Epoch 5/10 | Loss train: 0.503 test: 0.501 | Acc train: 85.1% test: 85.0%
+2025-09-20 21:21:36 | INFO | Epoch 6/10 | Loss train: 0.476 test: 0.479 | Acc train: 86.6% test: 86.0%
+2025-09-20 21:21:39 | INFO | Epoch 7/10 | Loss train: 0.454 test: 0.458 | Acc train: 88.0% test: 86.5%
+2025-09-20 21:21:43 | INFO | Epoch 8/10 | Loss train: 0.435 test: 0.441 | Acc train: 88.7% test: 87.6%
+2025-09-20 21:21:46 | INFO | Epoch 9/10 | Loss train: 0.419 test: 0.425 | Acc train: 89.5% test: 88.2%
+2025-09-20 21:21:49 | INFO | Epoch 10/10 | Loss train: 0.400 test: 0.411 | Acc train: 89.4% test: 88.6%
+2025-09-20 21:21:57 | INFO | Resuming from ./models/EfficientNet/epoch_010.pth
+2025-09-20 21:22:00 | INFO | Epoch 11/20 | Loss train: 0.386 test: 0.396 | Acc train: 89.4% test: 88.7%
+2025-09-20 21:22:04 | INFO | Epoch 12/20 | Loss train: 0.374 test: 0.385 | Acc train: 90.3% test: 88.9%
+2025-09-20 21:22:07 | INFO | Epoch 13/20 | Loss train: 0.363 test: 0.375 | Acc train: 89.9% test: 88.8%
+2025-09-20 21:22:10 | INFO | Epoch 14/20 | Loss train: 0.351 test: 0.366 | Acc train: 90.3% test: 88.9%
+2025-09-20 21:22:14 | INFO | Epoch 15/20 | Loss train: 0.346 test: 0.358 | Acc train: 90.8% test: 88.7%
+2025-09-20 21:22:17 | INFO | Epoch 16/20 | Loss train: 0.331 test: 0.349 | Acc train: 90.8% test: 88.8%
+2025-09-20 21:22:20 | INFO | Epoch 17/20 | Loss train: 0.331 test: 0.342 | Acc train: 90.8% test: 88.9%
+2025-09-20 21:22:24 | INFO | Epoch 18/20 | Loss train: 0.314 test: 0.335 | Acc train: 91.6% test: 89.1%
+2025-09-20 21:22:27 | INFO | Epoch 19/20 | Loss train: 0.309 test: 0.328 | Acc train: 91.2% test: 88.7%
+2025-09-20 21:22:31 | INFO | Epoch 20/20 | Loss train: 0.306 test: 0.322 | Acc train: 91.6% test: 89.3%
+2025-09-20 21:22:36 | INFO | Resuming from ./models/EfficientNet/epoch_020.pth
+2025-09-20 21:22:40 | INFO | Epoch 21/30 | Loss train: 0.294 test: 0.318 | Acc train: 91.6% test: 89.0%
+2025-09-20 21:22:43 | INFO | Epoch 22/30 | Loss train: 0.293 test: 0.312 | Acc train: 91.5% test: 89.2%
+2025-09-20 21:22:46 | INFO | Epoch 23/30 | Loss train: 0.286 test: 0.310 | Acc train: 92.0% test: 89.0%
+2025-09-20 21:22:50 | INFO | Epoch 24/30 | Loss train: 0.291 test: 0.302 | Acc train: 91.2% test: 89.2%
+2025-09-20 21:22:53 | INFO | Epoch 25/30 | Loss train: 0.278 test: 0.297 | Acc train: 92.3% test: 89.4%
+2025-09-20 21:22:56 | INFO | Epoch 26/30 | Loss train: 0.275 test: 0.294 | Acc train: 91.7% test: 89.1%
+2025-09-20 21:23:00 | INFO | Epoch 27/30 | Loss train: 0.270 test: 0.291 | Acc train: 91.8% test: 89.5%
+2025-09-20 21:23:03 | INFO | Epoch 28/30 | Loss train: 0.265 test: 0.287 | Acc train: 92.5% test: 89.5%
+2025-09-20 21:23:06 | INFO | Epoch 29/30 | Loss train: 0.258 test: 0.284 | Acc train: 92.8% test: 89.6%
+2025-09-20 21:23:10 | INFO | Epoch 30/30 | Loss train: 0.259 test: 0.279 | Acc train: 92.2% test: 89.7%
+2025-09-20 21:23:22 | INFO | Resuming from ./models/EfficientNet/epoch_030.pth
+2025-09-20 21:23:25 | INFO | Epoch 31/40 | Loss train: 0.259 test: 0.279 | Acc train: 92.1% test: 89.5%
+2025-09-20 21:23:29 | INFO | Epoch 32/40 | Loss train: 0.249 test: 0.274 | Acc train: 92.8% test: 89.8%
+2025-09-20 21:23:32 | INFO | Epoch 33/40 | Loss train: 0.252 test: 0.272 | Acc train: 91.6% test: 89.8%
+2025-09-20 21:23:36 | INFO | Epoch 34/40 | Loss train: 0.245 test: 0.269 | Acc train: 92.4% test: 89.9%
+2025-09-20 21:23:39 | INFO | Epoch 35/40 | Loss train: 0.242 test: 0.267 | Acc train: 92.4% test: 90.0%
+2025-09-20 21:23:42 | INFO | Epoch 36/40 | Loss train: 0.243 test: 0.264 | Acc train: 92.5% test: 90.2%
+2025-09-20 21:23:46 | INFO | Epoch 37/40 | Loss train: 0.238 test: 0.263 | Acc train: 93.1% test: 90.3%
+2025-09-20 21:23:49 | INFO | Epoch 38/40 | Loss train: 0.235 test: 0.262 | Acc train: 92.5% test: 90.1%
+2025-09-20 21:23:52 | INFO | Epoch 39/40 | Loss train: 0.230 test: 0.258 | Acc train: 92.9% test: 90.1%
+2025-09-20 21:23:56 | INFO | Epoch 40/40 | Loss train: 0.235 test: 0.256 | Acc train: 92.2% test: 90.0%
