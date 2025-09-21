@@ -3,9 +3,11 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torchvision
 
-class SmallCNN(nn.Module):
+from src.data import IMAGE_SIZE
+
+class BaselineNet(nn.Module):
     def __init__(self):
-        super(SmallCNN, self).__init__()
+        super().__init__()
 
         self.conv1 = nn.Conv2d(3, 32, kernel_size=3, padding=1)
         self.pool = nn.MaxPool2d(2, 2)
@@ -24,45 +26,45 @@ class SmallCNN(nn.Module):
         x = self.fc2(x)
         return x
 
-class SimpleCNN(nn.Module):
+class ConvNet(nn.Module):
     def __init__(self, 
-                 input_shape=(3, 128, 128), 
-                 conv_configs=[(16, 7), (32, 3)],
-                 p=0.5):
+            conv_configs=[(32, 7), (64, 3), (128, 3), (256, 3)], # channels,kernel_size
+        ):
         super().__init__()
+    
+        self.input_shape = (3, IMAGE_SIZE, IMAGE_SIZE)
         
         conv_blocks = []
-        in_channels = input_shape[0]
-        for i, (out_channels, kernel_size) in enumerate(conv_configs):
-            # optional: add dropout only in deeper conv layers
+        in_channels = self.input_shape[0]
+        for out_channels, kernel_size in conv_configs:
             conv_blocks += self._make_conv_block(in_channels, out_channels, kernel_size)
             in_channels = out_channels
         self.conv = nn.Sequential(*conv_blocks)
         
-        flatten_dim = self._get_conv_output(input_shape)
+        flatten_dim = self._get_conv_output(self.input_shape)
         self.fc = nn.Sequential(
             nn.Flatten(),
-            nn.Linear(flatten_dim, 500),
+            nn.Linear(flatten_dim, 256),
             nn.ReLU(),
-            nn.Dropout(p=p),   # effective place for dropout
-            nn.Linear(500, 1),
+            nn.Dropout(p=0.5),
+            nn.Linear(256, 1),
         )
     
-    def _make_conv_block(self, in_channels, out_channels, kernel_size, apply_dropout, p):
-        """One conv block: Conv2d + BN + ReLU + MaxPool (+ optional Dropout)"""
+    def _make_conv_block(self, in_channels, out_channels, kernel_size):
+        """
+        Conv block: Conv2d -> BatchNorm -> ReLU -> MaxPool
+        """
         layers = [
-            nn.Conv2d(in_channels, out_channels, kernel_size=kernel_size),
+            nn.Conv2d(in_channels, out_channels, kernel_size=kernel_size, padding=kernel_size//2),
             nn.BatchNorm2d(out_channels),
-            nn.ReLU(),
+            nn.ReLU(inplace=True),
             nn.MaxPool2d(2)
         ]
-        if apply_dropout:
-            layers.append(nn.Dropout(p=p))  # only for deeper conv blocks if enabled
         return layers
     
     def _get_conv_output(self, shape):
         """Run a dummy tensor through conv layers to get output size."""
-        dummy = torch.zeros(1, *shape)  # batch size = 1
+        dummy = torch.zeros(1, *shape)
         out = self.conv(dummy)
         return int(torch.prod(torch.tensor(out.shape[1:])))  # C*H*W
     
@@ -78,7 +80,6 @@ class EfficientNet(nn.Module):
         if not (0 <= baseline_level <= 7):
             raise ValueError("baseline_level must be between 0 and 7 (B0-B7).")
 
-        # Access via torchvision.models
         model_fn = getattr(torchvision.models, f"efficientnet_b{baseline_level}")
         weights_cls = getattr(torchvision.models, f"EfficientNet_B{baseline_level}_Weights")
         weights = weights_cls.DEFAULT
