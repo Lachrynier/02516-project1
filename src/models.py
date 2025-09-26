@@ -28,7 +28,10 @@ class BaselineNet(nn.Module):
 
 class ConvNet(nn.Module):
     def __init__(self, 
-            conv_configs=[(32, 7), (64, 3), (128, 3), (256, 3)], # channels,kernel_size
+            conv_configs=[(16, 3), (16, 3),  
+                (32, 3), (32, 3),  
+                (64, 3), (64, 3),  
+                (128, 3)], # channels,kernel_size
         ):
         super().__init__()
     

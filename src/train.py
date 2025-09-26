@@ -96,6 +96,10 @@ def train(model, optimizer, num_epochs, plot=False, save=False, restart=False, t
                                    'train_loss': [], 'test_loss': []}
     else:
         start_epoch, history = load_checkpoint(model, optimizer)
+    
+    # If no training, just load weights and stop
+    if num_epochs == 0:
+        return
 
     for epoch in tqdm(range(start_epoch, start_epoch + num_epochs), unit="epoch"):
         train_loss, train_correct = train_one_epoch(model, train_loader, optimizer)
