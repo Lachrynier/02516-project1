@@ -86,24 +86,23 @@ def rescale_to_01(img_tensor):
         img = img.numpy()
     return img
 
-def plot_saliency(model, transform=None, num_images=5, method="vanilla"):
+def plot_saliency(model, transform=None, num_images=4, method="vanilla", save_path=None):
     # Ignore loader to have control over sampling
     _, testset, _, _ = data.make_datasets_and_dataloaders(transform=transform)
 
     model.eval()
     model.to(DEVICE)
 
-    fig, ax = plt.subplots(num_images, 2, figsize=(8, 4 * num_images))
-
-    if num_images == 1:
-        ax = [ax]
+    # Make 2 rows and num_images columns
+    fig, ax = plt.subplots(2, num_images, figsize=(3 * num_images, 6))
 
     indices = random.sample(range(len(testset)), num_images)
 
-    for count, idx in enumerate(indices):
+    for col, idx in enumerate(indices):
         img, label = testset[idx]
-        img, label = img.to(DEVICE), label
+        img = img.to(DEVICE)
 
+        # Generate saliency
         if method == "vanilla":
             saliency = saliency_map_binary(model, img, target_class=label)
         elif method == "smoothgrad":
@@ -111,13 +110,20 @@ def plot_saliency(model, transform=None, num_images=5, method="vanilla"):
         else:
             raise ValueError(f"Unknown method '{method}'. Use 'vanilla' or 'smoothgrad'.")
 
-        ax[count][0].imshow(rescale_to_01(img))
-        ax[count][0].axis("off")
-        ax[count][0].set_title(f"Original (label={label})")
+        # Top row: original
+        ax[0, col].imshow(rescale_to_01(img))
+        ax[0, col].axis("off")
+        ax[0, col].set_title(f"Original\n(label={label})", fontsize=9)
 
-        ax[count][1].imshow(rescale_to_01(saliency), cmap="hot")
-        ax[count][1].axis("off")
-        ax[count][1].set_title("Saliency map")
+        # Bottom row: saliency
+        ax[1, col].imshow(rescale_to_01(saliency), cmap="hot")
+        ax[1, col].axis("off")
+        ax[1, col].set_title("Saliency map", fontsize=9)
 
     plt.tight_layout()
+
+    # Save if path provided
+    if save_path is not None:
+        plt.savefig(save_path, dpi=300, bbox_inches="tight")
+
     plt.show()
